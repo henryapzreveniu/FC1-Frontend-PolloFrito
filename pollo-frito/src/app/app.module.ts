@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,9 +11,11 @@ import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SignUpComponent } from './shared/component/sign-up/sign-up.component';
 import { PaymentComponent } from './shared/component/payment/payment.component';
+import { SuccessComponent } from './shared/component/success/success.component';
+import { FailComponent } from './shared/component/fail/fail.component';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, SignUpComponent, PaymentComponent],
+  declarations: [AppComponent, TableComponent, SignUpComponent, PaymentComponent, SuccessComponent, FailComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,5 +25,6 @@ import { PaymentComponent } from './shared/component/payment/payment.component';
   ],
   providers: [DataService],
   bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

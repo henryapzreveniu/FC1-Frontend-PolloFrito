@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   REVENIU_URL: 'https://integration.reveniu.com/api/v1/',
-  API : 'http://localhost:3050/',
+  API : 'https://friday-challenge1.herokuapp.com/',//'http://localhost:3050/',
   PLAN_ID: 475
 };
 

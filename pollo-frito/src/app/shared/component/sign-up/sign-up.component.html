@@ -9,7 +9,9 @@
         flex-direction: column;
       "
     >
-    <h1 style="text-align: center; font-size: 30px; font-weight: 500;">Pollo Frito</h1>
+      <h1 style="text-align: center; font-size: 30px; font-weight: 500">
+        Pollo Frito
+      </h1>
       <lottie-player
         src="/assets/fried-chicken.json"
         background="transparent"
@@ -21,24 +23,21 @@
       </lottie-player>
     </div>
 
-    <form
-      [formGroup]="profileForm"
-      style="display: flex; flex-direction: column"
-    >
-      <h2>Registro:</h2>
-      <mat-form-field class="example-full-width" appearance="fill">
+    <form [formGroup]="profileForm" class="input-container">
+      <h2 class="item animate__bounceIn">Registro:</h2>
+      <mat-form-field class="animate__bounceIn" appearance="fill">
         <mat-label>Nombre</mat-label>
         <input type="name" matInput formControlName="name" />
       </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field class="item animate__bounceIn" appearance="fill">
         <mat-label>Correo</mat-label>
         <input type="name" matInput formControlName="email" />
       </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field class="item animate__bounceIn" appearance="fill">
         <mat-label>Celular</mat-label>
         <input type="name" matInput formControlName="phone" />
       </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field class="item animate__bounceIn" appearance="fill">
         <mat-label>Contraseña</mat-label>
         <input type="password" matInput formControlName="password" />
       </mat-form-field>

@@ -7,7 +7,7 @@ import { SignUpService, User } from '../../services/sign-up.service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css'],
+  styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
   profileForm = new FormGroup({
@@ -16,6 +16,9 @@ export class SignUpComponent implements OnInit {
     phone: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
+
+  public toData = [1,2,3,4,5,6,7,8,9,10]
+
   public creationInProgress = false;
   constructor(
     private signUpService: SignUpService,

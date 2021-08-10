@@ -27,6 +27,10 @@ const routes: Routes = [
   {
     path: 'fail-payment',
     component: FailComponent
+  },
+  {
+    path: 'payment-table',
+    component: TableComponent
   }
 ];
 

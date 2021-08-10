@@ -13,18 +13,30 @@ import { SignUpComponent } from './shared/component/sign-up/sign-up.component';
 import { PaymentComponent } from './shared/component/payment/payment.component';
 import { SuccessComponent } from './shared/component/success/success.component';
 import { FailComponent } from './shared/component/fail/fail.component';
+import { PrimeModule } from './prime/prime.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, SignUpComponent, PaymentComponent, SuccessComponent, FailComponent],
+  declarations: [
+    AppComponent,
+    TableComponent,
+    SignUpComponent,
+    PaymentComponent,
+    SuccessComponent,
+    FailComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    PrimeModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [DataService],
   bootstrap: [AppComponent],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

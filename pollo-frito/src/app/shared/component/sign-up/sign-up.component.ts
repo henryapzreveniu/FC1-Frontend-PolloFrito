@@ -7,7 +7,7 @@ import { SignUpService, User } from '../../services/sign-up.service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
   profileForm = new FormGroup({
@@ -17,7 +17,7 @@ export class SignUpComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
 
-  public toData = [1,2,3,4,5,6,7,8,9,10]
+  public toData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   public creationInProgress = false;
   constructor(
@@ -30,8 +30,8 @@ export class SignUpComponent implements OnInit {
 
   async registrarse() {
     if (this.profileForm.invalid) return;
-    this.creationInProgress = true;
     try {
+      this.creationInProgress = true;
       await this.signUpService
         .createUser(this.profileForm.value)
         .then((resp: User) => {

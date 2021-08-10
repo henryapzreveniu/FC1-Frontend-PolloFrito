@@ -34,13 +34,14 @@ export class PaymentComponent implements OnInit {
   }
 
   async pay() {
+    this.loadingPayment = true;
     await this.signUpService
       .goToPay(this.userData)
       .then((rpt: PaymentRedirectReveniu) => {
-        console.log('Go to that page');
         this.openWindow(rpt.completion_url, rpt.security_token);
       })
       .catch((err) => {
+        this.loadingPayment = false;
         console.log('Hubo un error');
       });
   }

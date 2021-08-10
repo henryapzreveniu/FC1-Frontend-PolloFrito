@@ -11,7 +11,7 @@
       [loading]="loading"
       styleClass="p-datatable-customers p-datatable-gridlines"
       [paginator]="true"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
       [globalFilterFields]="[
         'name',
         'country.name',
@@ -59,7 +59,7 @@
               Precio
               <p-columnFilter
                 type="numeric"
-                field="balance"
+                field="plan_amount"
                 display="menu"
               ></p-columnFilter>
             </div>
@@ -69,7 +69,7 @@
               Ciclos
               <p-columnFilter
                 type="text"
-                field="representative.name"
+                field="cicles"
                 display="menu"
               ></p-columnFilter>
             </div>
@@ -79,7 +79,7 @@
               Ciclos restantes
               <p-columnFilter
                 type="numeric"
-                field="balance"
+                field="remaining_cicles"
                 display="menu"
               ></p-columnFilter>
             </div>
@@ -89,9 +89,10 @@
               Último pago
               <p-columnFilter
                 type="date"
-                field="date"
+                field="last_payment_date"
                 display="menu"
-              ></p-columnFilter>
+              >
+              </p-columnFilter>
             </div>
           </th>
           <th style="width: 8rem">
@@ -99,7 +100,7 @@
               Estatus
               <p-columnFilter
                 type="text"
-                field="verified"
+                field="status"
                 display="menu"
               ></p-columnFilter>
             </div>
@@ -108,10 +109,10 @@
       </ng-template>
       <ng-template pTemplate="body" let-suscripcion>
         <tr>
-          <td style="overflow: hidden;">
+          <td style="overflow: hidden">
             {{ suscripcion.customer.name }}
           </td>
-          <td style="overflow: hidden;">
+          <td style="overflow: hidden">
             <span>{{ suscripcion.customer.email }}</span>
           </td>
           <td>
@@ -127,7 +128,7 @@
             {{ suscripcion.remaining_cicles }}
           </td>
           <td>
-            {{ suscripcion.last_payment.date }}
+            {{ suscripcion.last_payment_date | date: "dd/MM/yyyy" }}
           </td>
           <td class="p-text-center">
             <i class="pi" class="true-icon pi-check-circle"></i>

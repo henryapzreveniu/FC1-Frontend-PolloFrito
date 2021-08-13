@@ -27,8 +27,8 @@ export class TableComponent implements OnInit {
 
   private async requestDataForEachSub() {
     const newSubs = [];
-    for (let index = 0; index < this.allSubsIds.length; index++) {
-      const element = this.allSubsIds[index]; //this.allSubsIds.length
+    for (let index = 0; index < 10; index++) { //this.allSubsIds.length
+      const element = this.allSubsIds[index]; 
       await this.customerService
         .getOneSubInfo(element.id)
         .then((result) => {

@@ -105,6 +105,9 @@
               ></p-columnFilter>
             </div>
           </th>
+          <th style="width: 8rem">
+            <div class="p-d-flex p-jc-between p-ai-center">Detalle</div>
+          </th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-suscripcion>
@@ -131,8 +134,20 @@
             {{ suscripcion.last_payment_date | date: "dd/MM/yyyy" }}
           </td>
           <td class="p-text-center">
-            <i class="pi" class="true-icon pi-check-circle"></i>
-            {{ suscripcion.status }}
+            <div style="display: flex; justify-content: center">
+              <i class="pi true-icon pi-check-circle"></i>
+              {{ status_data[suscripcion.status] }}
+            </div>
+          </td>
+          <td>
+            <div style="display: flex; justify-content: center">
+              <i
+                class="pi pi-credit-card"
+                style="font-size: 1rem; cursor: pointer"
+                (click)="goToDetail(suscripcion.id)"
+                pTooltip='Detalle de la suscripción'
+              ></i>
+            </div>
           </td>
         </tr>
       </ng-template>

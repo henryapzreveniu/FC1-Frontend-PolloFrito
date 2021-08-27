@@ -15,6 +15,7 @@ import { SuccessComponent } from './shared/component/success/success.component';
 import { FailComponent } from './shared/component/fail/fail.component';
 import { PrimeModule } from './prime/prime.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SubscriptionDetailComponent } from './shared/component/subscription-detail/subscription-detail.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PaymentComponent,
     SuccessComponent,
     FailComponent,
+    SubscriptionDetailComponent,
   ],
   imports: [
     BrowserModule,

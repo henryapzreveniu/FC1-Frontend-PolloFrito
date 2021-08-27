@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import {
   DataService,
@@ -6,6 +7,7 @@ import {
   SubscriptionReveniu,
 } from '../../services/data-service.service';
 import { ExportService } from '../../services/export-csv.service';
+import { status_transaction } from './status-data'
 
 @Component({
   selector: 'app-table',
@@ -16,18 +18,19 @@ export class TableComponent implements OnInit {
   loading: boolean = true;
 
   activityValues: number[] = [0, 100];
-
+  public status_data = status_transaction;
   allSubsIds: SubscriptionInterface[] = [];
   allSubs = [];
 
   constructor(
     private customerService: DataService,
-    private exportService: ExportService
+    private exportService: ExportService,
+    private router: Router
   ) {}
 
   private async requestDataForEachSub() {
     const newSubs = [];
-    for (let index = 0; index < 10; index++) { //this.allSubsIds.length
+    for (let index = 18; index > 13; index--) { //this.allSubsIds.length
       const element = this.allSubsIds[index]; 
       await this.customerService
         .getOneSubInfo(element.id)
@@ -72,5 +75,10 @@ export class TableComponent implements OnInit {
 
   clear(table: Table) {
     table.clear();
+  }
+
+  goToDetail(id_sub:number){
+    console.log('Go to detail of ' + id_sub)
+    this.router.navigate(['/subscription-detail'], { queryParams: { idsub: id_sub } });
   }
 }

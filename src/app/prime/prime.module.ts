@@ -12,7 +12,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { InputTextModule } from 'primeng/inputtext';
 import { ChipModule } from 'primeng/chip';
-
+import { CardModule } from 'primeng/card';
+import { SkeletonModule } from 'primeng/skeleton';
+import { MenubarModule } from 'primeng/menubar';
+import { TooltipModule } from 'primeng/tooltip';
 @NgModule({
   declarations: [],
   imports: [
@@ -28,6 +31,10 @@ import { ChipModule } from 'primeng/chip';
     DropdownModule,
     ProgressBarModule,
     InputTextModule,
+    CardModule,
+    SkeletonModule,
+    MenubarModule,
+    TooltipModule
   ],
   exports: [
     TableModule,
@@ -42,6 +49,10 @@ import { ChipModule } from 'primeng/chip';
     ProgressBarModule,
     InputTextModule,
     ChipModule,
+    CardModule,
+    SkeletonModule,
+    MenubarModule,
+    TooltipModule
   ],
 })
 export class PrimeModule {}

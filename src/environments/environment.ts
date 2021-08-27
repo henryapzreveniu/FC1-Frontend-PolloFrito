@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  API : 'https://friday-challenge1.herokuapp.com/',//'http://localhost:3050/',
-  PLAN_ID: 475
+  API : 'http://localhost:3000/'
+  //API : 'https://friday-challenge1.herokuapp.com/'
 };
 
 /*

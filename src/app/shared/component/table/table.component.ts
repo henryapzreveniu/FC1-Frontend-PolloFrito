@@ -7,7 +7,7 @@ import {
   SubscriptionReveniu,
 } from '../../services/data-service.service';
 import { ExportService } from '../../services/export-csv.service';
-import { status_transaction } from './status-data'
+import { status_transaction } from './status-data';
 
 @Component({
   selector: 'app-table',
@@ -21,6 +21,7 @@ export class TableComponent implements OnInit {
   public status_data = status_transaction;
   allSubsIds: SubscriptionInterface[] = [];
   allSubs = [];
+  searchEmailText = '';
 
   constructor(
     private customerService: DataService,
@@ -30,15 +31,16 @@ export class TableComponent implements OnInit {
 
   private async requestDataForEachSub() {
     const newSubs = [];
-    for (let index = 18; index > 13; index--) { //this.allSubsIds.length
-      const element = this.allSubsIds[index]; 
+    for (let index = 18; index > 13; index--) {
+      //this.allSubsIds.length
+      const element = this.allSubsIds[index];
       await this.customerService
         .getOneSubInfo(element.id)
         .then((result) => {
-            result['last_payment_date'] = undefined;
-            if(result.last_payment.date)
-                result['last_payment_date'] = new Date(result.last_payment.date);
-            newSubs.push(result)
+          result['last_payment_date'] = undefined;
+          if (result.last_payment.date)
+            result['last_payment_date'] = new Date(result.last_payment.date);
+          newSubs.push(result);
         })
         .catch((error) => {
           console.log(error);
@@ -48,11 +50,9 @@ export class TableComponent implements OnInit {
     this.loading = false;
     console.log('All subs from reveniu', this.allSubs);
   }
+
   async ngOnInit() {
-    await this.customerService.getAllSubs().then((subcriptions) => {
-      this.allSubsIds = subcriptions.data;
-      this.requestDataForEachSub();
-    });
+    await this.getDataFromSubs();
   }
 
   exportData() {
@@ -77,8 +77,35 @@ export class TableComponent implements OnInit {
     table.clear();
   }
 
-  goToDetail(id_sub:number){
-    console.log('Go to detail of ' + id_sub)
-    this.router.navigate(['/subscription-detail'], { queryParams: { idsub: id_sub } });
+  goToDetail(id_sub: number) {
+    console.log('Go to detail of ' + id_sub);
+    this.router.navigate(['/subscription-detail'], {
+      queryParams: { idsub: id_sub },
+    });
+  }
+
+  public async getDataFromSubs() {
+    await this.customerService.getAllSubs().then((subcriptions) => {
+      this.allSubsIds = subcriptions.data;
+      this.requestDataForEachSub();
+    });
+  }
+
+  public async searchEmail() {
+    if (this.searchEmailText !== '') {
+      this.loading = true;
+      try {
+        await this.customerService
+          .getSubByEmail(this.searchEmailText)
+          .then((res) => {
+            this.allSubs = res;
+            this.loading = false;
+          });
+      } catch (error) {
+        this.loading = false;
+      }
+    } else {
+      await this.getDataFromSubs();
+    }
   }
 }

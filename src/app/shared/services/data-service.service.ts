@@ -58,24 +58,16 @@ export interface SubscriptionReveniu {
   };
 }
 
-export interface allSubsResponse{
-  data: SubscriptionInterface[]
+export interface allSubsResponse {
+  data: SubscriptionInterface[];
 }
 
 @Injectable()
 export class DataService {
   constructor(private http: HttpClient) {}
 
-  public getCustomersLarge() {
-    return this.http
-      .get<any>(
-        'https://primeng-tablefilter-demo.stackblitz.io/assets/customers-large.json'
-      )
-      .toPromise()
-      .then((res) => <Customer[]>res.data)
-      .then((data) => {
-        return data;
-      });
+  public getAllPlans() {
+    return this.http.get<any>(environment.API + 'findAllPlans');
   }
 
   public getAllSubs() {
@@ -84,9 +76,29 @@ export class DataService {
       .toPromise();
   }
 
+  public getSubPayments(subId: number) {
+    return this.http
+      .get<any>(`${environment.API}getSubPayments/${subId}`);
+  }
+
+  public disableSubscription(subId: number) {
+    return this.http
+      .post<any>(`${environment.API}disableSub/${subId}`, {});
+  }
+
+  public enableSubscription(subId: number) {
+    return this.http
+      .post<any>(`${environment.API}enableSub/${subId}`, {});
+  }
+
+  public getSubByEmail(email: string) {
+    return this.http
+      .get<any>(`${environment.API}getSubByEmail?email=${email}`).toPromise();
+  }
+
   public getOneSubInfo(subId: number) {
     return this.http
-      .get<SubscriptionReveniu>(environment.API + 'getSub/' + subId)
+      .get<any>(`${environment.API}getSub/${subId}`)
       .toPromise();
   }
 }

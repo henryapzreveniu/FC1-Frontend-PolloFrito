@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { DataService } from '../../services/data-service.service';
@@ -13,6 +14,15 @@ export class SubscriptionDetailComponent implements OnInit {
   public subscription_info = undefined;
   items: MenuItem[];
   public select_sub = undefined;
+  displayedColumns: string[] = [
+    'issued_on',
+    'amount',
+    'buy_order',
+    'credit_card_type',
+    'is_recurrent',
+  ];
+  dataSource = new MatTableDataSource();
+
   constructor(
     private customerService: DataService,
     private router: Router,
@@ -63,11 +73,22 @@ export class SubscriptionDetailComponent implements OnInit {
       .catch((error) => {
         console.log(error);
       });
+    this.customerService.getSubPayments(this.select_sub).subscribe((res) => {
+      this.dataSource = new MatTableDataSource(res.payments);
+    });
     this.loadingData = false;
   }
 
   private goTo(path: string) {
     this.router.navigate([path]);
+  }
+
+  public async disableSub() {
+    await this.customerService.disableSubscription(this.select_sub).toPromise();
+  }
+
+  public async enableSub() {
+    await this.customerService.enableSubscription(this.select_sub).toPromise();
   }
 
   private closeWindows() {

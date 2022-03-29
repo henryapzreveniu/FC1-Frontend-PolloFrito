@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../../services/data-service.service';
 import { SharedDataService } from '../../services/shared-data.service';
 import {
   PaymentRedirectReveniu,
@@ -16,27 +16,36 @@ export interface PaymentResponse {
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css'],
+  styleUrls: ['./payment.component.scss'],
 })
 export class PaymentComponent implements OnInit {
   public loadingPayment = false;
   public userData: User;
+  public plans = [];
 
   constructor(
-    private route: ActivatedRoute,
+    private dataService: DataService,
     private sharedService: SharedDataService,
     private signUpService: SignUpService
   ) {}
 
   ngOnInit(): void {
     this.userData = this.sharedService.user;
-    console.log('recibi ...', this.userData);
+    this.dataService.getAllPlans().subscribe((res) => {
+      this.plans = res.data.results;
+    });
   }
 
-  async pay() {
+  async pay(planId: string) {
     this.loadingPayment = true;
+    const data = {
+      user_id: this.userData.id,
+      plan_id: planId,
+      email: this.userData.email,
+      name: this.userData.name,
+    };
     await this.signUpService
-      .goToPay(this.userData)
+      .goToPay(data)
       .then((rpt: PaymentRedirectReveniu) => {
         this.openWindow(rpt.completion_url, rpt.security_token);
       })

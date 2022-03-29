@@ -4,7 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TableComponent } from './shared/component/table/table.component';
-
+import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from './shared/services/data-service.service';
 import { MaterialModule } from './material/material.module';
@@ -36,6 +36,7 @@ import { SubscriptionDetailComponent } from './shared/component/subscription-det
     PrimeModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule,
   ],
   providers: [DataService],
   bootstrap: [AppComponent],

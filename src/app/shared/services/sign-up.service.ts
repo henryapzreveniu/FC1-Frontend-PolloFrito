@@ -17,6 +17,13 @@ export interface PaymentRedirectReveniu {
   status_code: number
 }
 
+export interface PaymentData {
+  user_id: number;
+  plan_id: string;
+  email: string;
+  name: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -30,7 +37,7 @@ export class SignUpService {
       .toPromise();
   }
 
-  public async goToPay(user: User) {
+  public async goToPay(user: PaymentData) {
     return await this.http
       .post<PaymentRedirectReveniu>(environment.API + 'payUser/', user)
       .toPromise();

@@ -1,6 +1,12 @@
 <div style="padding: 20px 20px">
   <div class="card">
     <h1>Lista de suscripciones</h1>
+    <form>
+      <mat-form-field>
+        <input type="text" name="email" matInput placeholder="Buscar" [(ngModel)]="searchEmailText">
+        <mat-icon matSuffix (click)="searchEmail()">search</mat-icon>
+      </mat-form-field>
+    </form>
     <p-table
       #dt1
       [value]="allSubs"
